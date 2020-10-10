@@ -1,0 +1,524 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The purpose of this service is to provide an application\nthat is using plain go code to define an API",
+    "title": "User API.",
+    "version": "0.0.1"
+  },
+  "host": "localhost",
+  "paths": {
+    "/api/address": {
+      "get": {
+        "tags": [
+          "addresss"
+        ],
+        "summary": "ListAddress.",
+        "operationId": "ListAddress",
+        "parameters": [
+          {
+            "description": "user id",
+            "name": "user_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "address",
+            "schema": {
+              "$ref": "#/definitions/AddressList"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "addresss"
+        ],
+        "summary": "CreateAddress.",
+        "operationId": "CreateAddress",
+        "parameters": [
+          {
+            "description": "the full description of the UpdateUserRequest",
+            "name": "address",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addressParam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "address",
+            "schema": {
+              "$ref": "#/definitions/Address"
+            }
+          }
+        }
+      }
+    },
+    "/api/address/{id}": {
+      "get": {
+        "tags": [
+          "addresss"
+        ],
+        "summary": "ShowAddress.",
+        "operationId": "ShowAddress",
+        "responses": {
+          "200": {
+            "description": "address",
+            "schema": {
+              "$ref": "#/definitions/Address"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "addresss"
+        ],
+        "summary": "UpdateAddress.",
+        "operationId": "UpdateAddress",
+        "parameters": [
+          {
+            "description": "the full description of the UpdateUserRequest",
+            "name": "address",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addressParam"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "address",
+            "schema": {
+              "$ref": "#/definitions/Address"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "addresss"
+        ],
+        "summary": "DeleteAddress.",
+        "operationId": "DeleteAddress",
+        "responses": {
+          "200": {}
+        }
+      }
+    },
+    "/api/users": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "AuthUser.",
+        "operationId": "AuthUserRequest",
+        "parameters": [
+          {
+            "description": "ios, android",
+            "name": "Platform",
+            "in": "header",
+            "required": true
+          },
+          {
+            "description": "apple, huawei, postman, vivo, test, ios_official, ios_pugongyi, nx1, nx2, nx3, risewinter, undefined, zl2, zl3",
+            "name": "Channel",
+            "in": "header",
+            "required": true
+          },
+          {
+            "description": "the full description of the session",
+            "name": "session",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "user",
+            "schema": {
+              "$ref": "#/definitions/UserPresenter"
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{id}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "ShowUser.",
+        "operationId": "ShowUser",
+        "responses": {
+          "200": {
+            "description": "current_user",
+            "schema": {
+              "$ref": "#/definitions/UserPresenter"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "users"
+        ],
+        "summary": "UpdateUser.",
+        "operationId": "UpdateUser",
+        "parameters": [
+          {
+            "description": "the full description of the UpdateUserRequest",
+            "name": "session",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Profile"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "user",
+            "schema": {
+              "$ref": "#/definitions/UserPresenter"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "description": "市",
+          "type": "string",
+          "x-go-name": "City"
+        },
+        "house": {
+          "description": "详细地址",
+          "type": "string",
+          "x-go-name": "House"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "ID"
+        },
+        "is_default": {
+          "description": "默认",
+          "type": "boolean",
+          "x-go-name": "IsDefault"
+        },
+        "name": {
+          "description": "收件人",
+          "type": "string",
+          "x-go-name": "Name"
+        },
+        "phone": {
+          "description": "电话",
+          "type": "string",
+          "x-go-name": "Phone"
+        },
+        "postcode": {
+          "description": "邮编",
+          "type": "string",
+          "x-go-name": "Postcode"
+        },
+        "province": {
+          "description": "省",
+          "type": "string",
+          "x-go-name": "Province"
+        },
+        "remark": {
+          "description": "标记",
+          "type": "string",
+          "x-go-name": "Remark"
+        },
+        "user_id": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "UserID"
+        },
+        "zone": {
+          "description": "区",
+          "type": "string",
+          "x-go-name": "Zone"
+        }
+      },
+      "x-go-package": "gitee.com/dalezhang/account_center/models"
+    },
+    "AddressList": {
+      "type": "object",
+      "properties": {
+        "address_list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Address"
+          },
+          "x-go-name": "AddressList"
+        }
+      },
+      "x-go-package": "gitee.com/dalezhang/account_center/controller/api/v1/address"
+    },
+    "Profile": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "description": "地址",
+          "type": "string",
+          "x-go-name": "Address"
+        },
+        "avatar": {
+          "description": "头像链接",
+          "type": "string",
+          "x-go-name": "Avatar"
+        },
+        "description": {
+          "description": "分析师简介",
+          "type": "string",
+          "x-go-name": "Description"
+        },
+        "dialing_code": {
+          "description": "区号",
+          "type": "string",
+          "x-go-name": "DialingCode"
+        },
+        "name": {
+          "type": "string",
+          "x-go-name": "Name"
+        },
+        "password": {
+          "description": "密码",
+          "type": "string",
+          "x-go-name": "Password"
+        },
+        "personal_words": {
+          "description": "用户个人简介",
+          "type": "string",
+          "x-go-name": "PersonalWords"
+        },
+        "phone": {
+          "description": "登陆手机",
+          "type": "string",
+          "x-go-name": "Phone"
+        },
+        "postcode": {
+          "description": "邮编",
+          "type": "string",
+          "x-go-name": "Postcode"
+        },
+        "qq": {
+          "description": "qq uuid",
+          "type": "string",
+          "x-go-name": "QQ"
+        },
+        "wechat": {
+          "description": "微信uuid",
+          "type": "string",
+          "x-go-name": "Wechat"
+        }
+      },
+      "x-go-package": "gitee.com/dalezhang/account_center/modules/session"
+    },
+    "Session": {
+      "type": "object",
+      "properties": {
+        "dialing_code": {
+          "description": "区号",
+          "type": "string",
+          "x-go-name": "DialingCode"
+        },
+        "name": {
+          "description": "姓名",
+          "type": "string",
+          "x-go-name": "Name"
+        },
+        "password": {
+          "description": "密码",
+          "type": "string",
+          "x-go-name": "Password"
+        },
+        "phone": {
+          "description": "电话",
+          "type": "string",
+          "x-go-name": "Phone"
+        },
+        "qq": {
+          "$ref": "#/definitions/thirdParty"
+        },
+        "recommend_user_id": {
+          "description": "推荐人ID",
+          "type": "string",
+          "x-go-name": "RecommendUserID"
+        },
+        "remote_ip": {
+          "description": "客户端ip",
+          "type": "string",
+          "x-go-name": "RemoteIP"
+        },
+        "wechat": {
+          "$ref": "#/definitions/thirdParty"
+        }
+      },
+      "x-go-package": "gitee.com/dalezhang/account_center/modules/session"
+    },
+    "UserPresenter": {
+      "type": "object",
+      "properties": {
+        "avatar": {
+          "description": "头像链接",
+          "type": "string",
+          "x-go-name": "Avatar"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "x-go-name": "CreatedAt"
+        },
+        "description": {
+          "description": "分析师简介",
+          "type": "string",
+          "x-go-name": "Description"
+        },
+        "has_password": {
+          "description": "是否有密码",
+          "type": "boolean",
+          "x-go-name": "HasPassword"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "ID"
+        },
+        "last_login": {
+          "type": "string",
+          "format": "date-time",
+          "x-go-name": "LastLogin"
+        },
+        "name": {
+          "type": "string",
+          "x-go-name": "Name"
+        },
+        "omniauth_provider": {
+          "description": "第三方登陆来源",
+          "type": "string",
+          "x-go-name": "OmniauthProvider"
+        },
+        "personal_words": {
+          "description": "用户个人简介",
+          "type": "string",
+          "x-go-name": "PersonalWords"
+        },
+        "phone": {
+          "type": "string",
+          "x-go-name": "Phone"
+        },
+        "platform_channel_id": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "PlatformChannelID"
+        },
+        "register_ip": {
+          "type": "string",
+          "x-go-name": "RegisterIP"
+        },
+        "status": {
+          "description": "用户状态： is_ban(冻结)，normal(正常)",
+          "type": "string",
+          "x-go-name": "Status"
+        },
+        "type": {
+          "type": "string",
+          "x-go-name": "Type"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "x-go-name": "UpdatedAt"
+        }
+      },
+      "x-go-package": "gitee.com/dalezhang/account_center/presenter"
+    },
+    "addressParam": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "description": "市",
+          "type": "string",
+          "x-go-name": "City"
+        },
+        "house": {
+          "description": "详细地址",
+          "type": "string",
+          "x-go-name": "House"
+        },
+        "is_default": {
+          "description": "默认",
+          "type": "boolean",
+          "x-go-name": "IsDefault"
+        },
+        "name": {
+          "description": "收件人",
+          "type": "string",
+          "x-go-name": "Name"
+        },
+        "phone": {
+          "description": "电话",
+          "type": "string",
+          "x-go-name": "Phone"
+        },
+        "postcode": {
+          "description": "邮编",
+          "type": "string",
+          "x-go-name": "Postcode"
+        },
+        "province": {
+          "description": "省",
+          "type": "string",
+          "x-go-name": "Province"
+        },
+        "remark": {
+          "description": "标记",
+          "type": "string",
+          "x-go-name": "Remark"
+        },
+        "user_id": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "UserID"
+        },
+        "zone": {
+          "description": "区",
+          "type": "string",
+          "x-go-name": "Zone"
+        }
+      },
+      "x-go-package": "gitee.com/dalezhang/account_center/controller/api/v1/address"
+    },
+    "thirdParty": {
+      "type": "object",
+      "properties": {
+        "avatar": {
+          "description": "头像连接",
+          "type": "string",
+          "x-go-name": "Avatar"
+        },
+        "uuid": {
+          "type": "string",
+          "x-go-name": "UUID"
+        }
+      },
+      "x-go-package": "gitee.com/dalezhang/account_center/modules/session"
+    }
+  }
+}

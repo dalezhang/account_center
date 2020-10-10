@@ -1,0 +1,9 @@
+FROM alpine:3.6
+LABEL maintainer="Dale"
+RUN apk update && \
+    apk add ca-certificates musl-dev && \
+    apk add tzdata
+COPY main /app/main
+COPY conf /app/conf
+EXPOSE 8080
+CMD cd /app && ./main
